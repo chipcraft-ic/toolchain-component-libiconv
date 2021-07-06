@@ -6,12 +6,12 @@ SHELL = /bin/sh
 MAKE = make
 AUTOCONF = autoconf
 AUTOHEADER = autoheader
-AUTOMAKE = automake-1.16
-ACLOCAL = aclocal-1.16
+AUTOMAKE = automake
+ACLOCAL = aclocal
 GPERF = gperf
 CC = gcc -Wall
 CFLAGS = -O
-MAN2HTML = groff -mandoc -Thtml
+MAN2HTML = true
 CP = cp
 RM = rm -f
 
@@ -25,7 +25,6 @@ all : srclib/Makefile.gnulib srclib/Makefile.in \
       lib/aliases_dos.h \
       lib/aliases_extra.h \
       lib/flags.h lib/translit.h \
-      man/iconv.1.html man/iconv.3.html man/iconv_close.3.html man/iconv_open.3.html man/iconvctl.3.html man/iconv_open_into.3.html \
       force
 	cd libcharset && $(MAKE) -f Makefile.devel all
 
@@ -206,12 +205,6 @@ lib/translit.h : lib/translit.def lib/gentranslit.c
 	$(RM) gentranslit
 
 
-man/%.html : man/%
-	$(MAN2HTML) $< > $@-t
-	grep -v '<!-- CreationDate' < $@-t > $@
-	$(RM) $@-t
-
-
 gnulib-clean : force
 # Move srclib/Makefile.gnulib away, so that the target 'srclib/Makefile.gnulib' will actually do something.
 	if test -f srclib/Makefile.gnulib; then \
@@ -238,7 +231,6 @@ totally-clean : force
 	rm -f lib/canonical_local.h lib/canonical_local_sysaix.h lib/canonical_local_syshpux.h lib/canonical_local_sysosf1.h lib/canonical_local_syssolaris.h
 	rm -f lib/flags.h
 	rm -f lib/translit.h
-	rm -f man/iconv.1.html man/iconv.3.html man/iconv_close.3.html man/iconv_open.3.html man/iconvctl.3.html man/iconv_open_into.3.html
 	cd libcharset && $(MAKE) -f Makefile.devel totally-clean
 
 

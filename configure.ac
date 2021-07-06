@@ -205,10 +205,6 @@ AC_CONFIG_FILES([lib/Makefile])
 AC_CONFIG_FILES([srclib/Makefile])
 AC_CONFIG_FILES([src/Makefile])
 AC_CONFIG_FILES([po/Makefile.in])
-AC_CONFIG_FILES([man/Makefile])
-if test -d "${srcdir}/tests"; then
-  AC_CONFIG_FILES([tests/Makefile])
-fi
 AC_CONFIG_FILES([include/iconv.h:include/iconv.h.build.in])
 AC_CONFIG_FILES([include/iconv.h.inst:include/iconv.h.in])
 AC_OUTPUT
